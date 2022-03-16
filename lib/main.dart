@@ -25,6 +25,7 @@ class _PerguntaAppState
     print('respondido');
   }
 
+  // teste
   final List<String> perguntas = [
     'qual é a sua cor favorita',
     'qual é o seu animal favorito',
