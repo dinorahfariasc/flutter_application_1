@@ -1,39 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import './questao.dart';
+import './resposta.dart';
 
 main() {
   runApp(PerguntaApp());
 }
 
 class PerguntaApp extends StatefulWidget {
+  const PerguntaApp({Key? key}) : super(key: key);
+
   @override
   State<PerguntaApp> createState() => _PerguntaAppState();
 }
 
-class _PerguntaAppState
-    extends State<PerguntaApp> // estado que gerencia as atulizacao do app
+class _PerguntaAppState extends State<PerguntaApp> {
+  // estado que gerencia as atulizacao do app
 // a arvore de componentes pra ser exibida prescisa do estado
 // qual quer mudança que queremos imediato prescisamos usar o setState(){}
-{
-  var perguntaSelecionada = 0;
+
+  var _perguntaSelecionada = 0;
+
   void _responder() {
     setState(() {
-      perguntaSelecionada++;
+      _perguntaSelecionada++;
     });
 
     print('respondido');
   }
 
-  final List<String> perguntas = [
-    'qual é a sua cor favorita',
-    'qual é o seu animal favorito',
-    'teste1',
-    'teste2'
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> perguntas = [
+      {
+        'texto': 'qual é o seu animal favorito?',
+        'respostas': ['gato', 'cachorro', 'rato', 'jacaré'],
+      },
+      {
+        'texto': "qual é o grupo favorito?",
+        'respostas': ['idle', 'black pink', 'loona', 'red velvet']
+      },
+      {
+        'texto': 'qual é a sua utt?',
+        'respostas': ['minnie', 'lisa', 'seulgi', 'yujin']
+      },
+    ];
+
+    // abordagem mais interativa
+    //List<Widget> respostas = [];
+    //for (String textResp in perguntas[_perguntaSelecionada]['respostas']) {
+    //  respostas.add(Resposta(textResp, _responder));
+    //}
+
+    // abordagem mais declarativa
+    List<String> respostas = perguntas[_perguntaSelecionada]['respostas'];
+    List<Widget> widgets =
+        respostas.map((t) => Resposta(t, _responder)).toList();
+
+    // pega somente o texto do nosso map, instaciamos esse texto com a classe
+    // Resposta e passamos para uma lista, assim temos uma lista de widgets do
+    // tipo Resposta que sao os botoes com as opcoes
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -41,18 +68,8 @@ class _PerguntaAppState
         ),
         body: Column(
           children: [
-            Questao(perguntas[perguntaSelecionada]),
-            TextButton(
-                onPressed:
-                    _responder, // tanto podemos usar uma funcao ja definida
-                child: Text('resposta 1')),
-            TextButton(
-                onPressed: () {
-                  _responder();
-                  print('resposta 2'); // como uma funcao anonima
-                },
-                child: Text('resposta 2')),
-            TextButton(onPressed: _responder, child: Text('resposta 3')),
+            Questao(perguntas[_perguntaSelecionada]['texto'] as String),
+            ...widgets, // spread coloca todos elementos de um lista em outra
           ],
         ),
       ),
