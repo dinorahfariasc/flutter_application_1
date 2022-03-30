@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_application_1/resultado.dart';
 import './resultado.dart';
 import './questionario.dart';
@@ -26,28 +25,28 @@ class _PerguntaAppState extends State<PerguntaApp> {
     {
       'texto': 'qual é o seu animal favorito?',
       'respostas': [
-        {'texto': 'gato', 'nota': 8},
-        {'texto': 'cachorro', 'nota': 8},
+        {'texto': 'gato', 'nota': 5},
+        {'texto': 'cachorro', 'nota': 3},
         {'texto': 'rato', 'nota': 10},
-        {'texto': 'jacaré', 'nota': 6},
+        {'texto': 'jacaré', 'nota': 1},
       ],
     },
     {
       'texto': "qual é o grupo favorito?",
       'respostas': [
-        {'texto': 'idle', 'nota': 7},
-        {'texto': 'black pink', 'nota': 6},
-        {'texto': 'loona', 'nota': 9},
+        {'texto': 'idle', 'nota': 3},
+        {'texto': 'black pink', 'nota': 1},
+        {'texto': 'loona', 'nota': 5},
         {'texto': 'red velvet', 'nota': 10},
       ]
     },
     {
       'texto': 'qual é a sua utt?',
       'respostas': [
-        {'texto': 'jisoo', 'nota': 9},
-        {'texto': 'sinb', 'nota': 6},
+        {'texto': 'jisoo', 'nota': 5},
+        {'texto': 'sinb', 'nota': 1},
         {'texto': 'seulgi', 'nota': 10},
-        {'texto': 'gaeul', 'nota': 8},
+        {'texto': 'gaeul', 'nota': 3},
       ]
     },
   ];
@@ -92,6 +91,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData.dark(),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('teste de afinidade'),

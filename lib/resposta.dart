@@ -13,7 +13,7 @@ class Resposta extends StatelessWidget {
       width: double.infinity,
       child: TextButton(
           style: TextButton.styleFrom(
-              backgroundColor: Colors.blue, primary: Colors.white),
+              backgroundColor: Colors.purple, primary: Colors.white),
           onPressed: onSelect, // tanto podemos usar uma funcao ja definida
           child: Text(texto)),
     );
